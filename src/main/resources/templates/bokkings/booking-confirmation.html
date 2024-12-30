@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="confirmation-container">
+        <h2>Booking Confirmed!</h2>
+        
+        <div class="booking-details">
+            <p><strong>Booking Reference:</strong> <span th:text="${booking.id}"></span></p>
+            <p><strong>Tour:</strong> <span th:text="${booking.tour.name}"></span></p>
+            <p><strong>Date:</strong> <span th:text="${#temporals.format(booking.bookingDate, 'dd-MM-yyyy')}"></span></p>
+            <p><strong>Number of People:</strong> <span th:text="${booking.numberOfPeople}"></span></p>
+            <p><strong>Total Price:</strong> <span th:text="${'$' + booking.totalPrice}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${booking.status}"></span></p>
+        </div>
+        
+        <div class="confirmation-actions">
+            <a href="/" class="btn-home">Return to Home</a>
+        </div>
+    </div>
+</body>
+<!-- Agregar este código justo antes del cierre del body -->
+<script>
+    document.querySelector('.watch-video').addEventListener('click', function() {
+        // Aquí puedes poner el ID de tu video de YouTube
+        const videoId = 'your-video-id';
+        const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+        document.querySelector('.video-container iframe').src = videoUrl;
+        document.getElementById('videoModal').style.display = 'block';
+    });
+    </script>
+</html>

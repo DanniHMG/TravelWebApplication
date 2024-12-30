@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Time</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo">
+            </div>
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                <li><a href="#tours">TOURS</a></li>
+                <li><a href="#gallery">GALLERY</a></li>
+                <li><a href="#contacts">CONTACTS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <h1>TRAVEL TIME</h1>
+            <p>Don't let the boundaries contain you.
+               Let the rhythm of the saints move you.
+               You are going to see new places.</p>
+            <div class="hero-counter">
+                <span>01</span>
+                <span>02</span>
+                <span>03</span>
+                <span>04</span>
+                <span>05</span>
+            </div>
+        </section>
+
+        <section class="info-cards">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Choose Destination</h3>
+                <p>Select your favorite destination</p>
+                <a href="#tours" class="more-details">MORE DETAILS</a>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Select Date</h3>
+                <p>Pick your convenient date</p>
+                <a href="#tours" class="more-details">MORE DETAILS</a>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-plane"></i>
+                <h3>Book Your Trip</h3>
+                <p>Book your dream vacation</p>
+                <a href="#tours" class="more-details">MORE DETAILS</a>
+            </div>
+        </section>
+
+        <section class="popular-tours" id="tours">
+            <h2>POPULAR TOURS</h2>
+            <div class="tours-grid">
+                <div class="tour-card" th:each="tour : ${allTours}">
+                    <img th:src="@{${tour.imageUrl}}" th:alt="${tour.name}">
+                    <div class="tour-info">
+                        <h3 th:text="${tour.name}">TOUR 1</h3>
+                        <p th:text="${tour.description}">There will be a small text</p>
+                        <div class="tour-price">
+                            <span th:text="${'$' + tour.price}">$999</span>
+                            <a th:href="@{/booking/tour/{id}(id=${tour.id})}" class="btn-book">Book Now</a>
+                        </div>
+                        <div class="tour-details">
+                            <span><i class="fas fa-clock"></i> <span th:text="${tour.duration}">7 days</span></span>
+                            <span><i class="fas fa-map-marker-alt"></i> <span th:text="${tour.location}">Paris</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="discover" id="about">
+            <div class="discover-content">
+                <h2>DISCOVER THE WORLD IN A NEW WAY</h2>
+                <p>"Attachment to things and comfort is the main obstacle to developing life. Now, as a rule, it is difficult for people to break through and out of their lives. Maybe everything."</p>
+                <p class="author">© Carlos Castaneda</p>
+                <button class="watch-video">
+                    <i class="fas fa-play"></i>
+                    WATCH THE VIDEO
+                </button>
+            </div>
+            <div class="video-thumbnails">
+                <img th:src="@{/images/video-thumb1.jpg}" alt="Video Thumbnail 1">
+                <img th:src="@{/images/video-thumb2.jpg}" alt="Video Thumbnail 2">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-vk"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <!-- Modal para el video -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="video-container">
+                <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

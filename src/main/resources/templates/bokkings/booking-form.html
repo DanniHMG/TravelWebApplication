@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Tour</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="booking-container">
+        <h2>Book Your Tour</h2>
+        <div class="tour-details">
+            <h3 th:text="${tour.name}">Tour Name</h3>
+            <p th:text="${tour.description}">Description</p>
+            <p>Price per person: <span th:text="${'$' + tour.price}">$999</span></p>
+        </div>
+        
+        <form th:action="@{/booking/create}" method="post" th:object="${bookingDTO}">
+            <input type="hidden" th:field="*{tourId}">
+            
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" th:field="*{customerName}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" th:field="*{customerEmail}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Phone:</label>
+                <input type="tel" th:field="*{customerPhone}">
+            </div>
+            
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" th:field="*{bookingDate}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Number of People:</label>
+                <input type="number" th:field="*{numberOfPeople}" min="1" required>
+            </div>
+            
+            <button type="submit" class="btn-book">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>

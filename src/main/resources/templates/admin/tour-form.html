@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${tour.id == null ? 'Create Tour' : 'Edit Tour'}">Tour Form</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1 th:text="${tour.id == null ? 'Create New Tour' : 'Edit Tour'}">Tour Form</h1>
+            <a th:href="@{/admin}" class="btn-back">Back to Dashboard</a>
+        </header>
+
+        <div class="admin-content">
+            <form th:action="@{/admin/tour/save}" method="post" th:object="${tour}" class="tour-form">
+                <input type="hidden" th:field="*{id}">
+                
+                <div class="form-group">
+                    <label>Tour Name</label>
+                    <input type="text" th:field="*{name}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea th:field="*{description}" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" th:field="*{location}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" th:field="*{price}" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" th:field="*{duration}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" th:field="*{imageUrl}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Max Group Size</label>
+                    <input type="number" th:field="*{maxGroupSize}" required>
+                </div>
+                
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" th:field="*{isFeatured}">
+                        Featured Tour
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Save Tour</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

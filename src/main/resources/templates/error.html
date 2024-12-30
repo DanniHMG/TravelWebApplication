@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="error-container">
+        <h2>Oops! Something went wrong </h2>
+        <div class="error-message">
+            <p th:text="${errorMessage}">Error message goes here</p>
+        </div>
+        <div class="error-actions">
+            <a href="/" class="btn-home">Return to Home</a>
+            <button onclick="window.history.back()" class="btn-back">Go Back</button>
+        </div>
+    </div>
+</body>
+</html>
